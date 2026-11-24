@@ -6,6 +6,7 @@ import { AppService } from './app.service.js';
 import { createTypeOrmOptions } from './config/database.config.js';
 import { EnvConfig, validateEnv } from './config/env.validation.js';
 import { AdminModule } from './modules/admin/admin.module.js';
+import { AuthModule } from './modules/auth/auth.module.js';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { AdminModule } from './modules/admin/admin.module.js';
         createTypeOrmOptions(configService),
     }),
     AdminModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

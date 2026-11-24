@@ -43,4 +43,20 @@ export class CreateAdminDto {
   })
   @IsSafeString()
   fullName: string;
+
+  @ApiProperty({
+    description: ADMIN_SWAGGER.PASSWORD_DESCRIPTION,
+    example: ADMIN_SWAGGER.PASSWORD_EXAMPLE,
+    minLength: ADMIN_CONSTRAINTS.PASSWORD_MIN_LENGTH,
+    maxLength: ADMIN_CONSTRAINTS.PASSWORD_MAX_LENGTH,
+  })
+  @IsNotEmpty({ message: VALIDATION_MESSAGES.IS_NOT_EMPTY })
+  @IsString({ message: VALIDATION_MESSAGES.IS_STRING })
+  @MinLength(ADMIN_CONSTRAINTS.PASSWORD_MIN_LENGTH, {
+    message: VALIDATION_MESSAGES.MIN_LENGTH,
+  })
+  @MaxLength(ADMIN_CONSTRAINTS.PASSWORD_MAX_LENGTH, {
+    message: VALIDATION_MESSAGES.MAX_LENGTH,
+  })
+  password: string;
 }

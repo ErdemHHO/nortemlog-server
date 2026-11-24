@@ -24,6 +24,14 @@ export class Admin extends BaseEntity {
   fullName: string;
 
   @Column({
+    name: ADMIN_COLUMNS.PASSWORD,
+    type: DATABASE_COLUMN_TYPES.VARCHAR,
+    length: ADMIN_CONSTRAINTS.PASSWORD_HASH_MAX_LENGTH,
+    select: false,
+  })
+  password: string;
+
+  @Column({
     name: ADMIN_COLUMNS.IS_ACTIVE,
     type: DATABASE_COLUMN_TYPES.BOOLEAN,
     default: true,

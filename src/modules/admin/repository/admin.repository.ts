@@ -12,4 +12,20 @@ export class AdminRepository extends BaseRepository<Admin> {
   ) {
     super(repository);
   }
+
+  async findByEmailWithPassword(email: string): Promise<Admin | null> {
+    return this.repository.findOne({
+      where: { email },
+      select: {
+        id: true,
+        email: true,
+        fullName: true,
+        password: true,
+        isActive: true,
+        createdAt: true,
+        updatedAt: true,
+        deletedAt: true,
+      },
+    });
+  }
 }

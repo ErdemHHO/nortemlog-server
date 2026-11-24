@@ -26,6 +26,18 @@ export const envValidationSchema = z.object({
   DB_NAME: z.string().min(1),
   DB_SYNCHRONIZE: booleanFromString.default(DEFAULT_CONFIG.DB_SYNCHRONIZE),
   DB_LOGGING: booleanFromString.default(DEFAULT_CONFIG.DB_LOGGING),
+  JWT_ACCESS_SECRET: z.string().min(DEFAULT_CONFIG.JWT_MIN_SECRET_LENGTH),
+  JWT_REFRESH_SECRET: z.string().min(DEFAULT_CONFIG.JWT_MIN_SECRET_LENGTH),
+  JWT_ACCESS_EXPIRES_IN: z.coerce
+    .number()
+    .int()
+    .positive()
+    .default(DEFAULT_CONFIG.JWT_ACCESS_EXPIRES_IN),
+  JWT_REFRESH_EXPIRES_IN: z.coerce
+    .number()
+    .int()
+    .positive()
+    .default(DEFAULT_CONFIG.JWT_REFRESH_EXPIRES_IN),
 });
 
 export type EnvConfig = z.infer<typeof envValidationSchema>;

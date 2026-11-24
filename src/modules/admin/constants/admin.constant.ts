@@ -6,6 +6,7 @@ export const ADMIN_ROUTES = {
 
 export const ADMIN_COLUMNS = {
   FULL_NAME: 'full_name',
+  PASSWORD: 'password',
   IS_ACTIVE: 'is_active',
 } as const;
 
@@ -13,6 +14,9 @@ export const ADMIN_CONSTRAINTS = {
   EMAIL_MAX_LENGTH: 255,
   FULL_NAME_MIN_LENGTH: 2,
   FULL_NAME_MAX_LENGTH: 150,
+  PASSWORD_MIN_LENGTH: 8,
+  PASSWORD_MAX_LENGTH: 128,
+  PASSWORD_HASH_MAX_LENGTH: 255,
 } as const;
 
 export const ADMIN_ERROR_MESSAGES = {
@@ -28,6 +32,8 @@ export const ADMIN_SWAGGER = {
   EMAIL_EXAMPLE: 'admin@northemlog.com',
   FULL_NAME_DESCRIPTION: 'Yöneticinin adı ve soyadı',
   FULL_NAME_EXAMPLE: 'Erdem H.',
+  PASSWORD_DESCRIPTION: 'Yöneticinin giriş şifresi',
+  PASSWORD_EXAMPLE: 'StrongPass123!',
   ID_DESCRIPTION: 'Yöneticinin benzersiz kimliği (UUID)',
   IS_ACTIVE_DESCRIPTION: 'Yönetici hesabının aktiflik durumu',
   CREATED_AT_DESCRIPTION: 'Oluşturulma tarihi (UTC)',

@@ -6,6 +6,7 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
+import { AdminAuth } from '../auth/decorators/admin-auth.decorator.js';
 import {
   ADMIN_ERROR_MESSAGES,
   ADMIN_ROUTES,
@@ -16,6 +17,7 @@ import { AdminResponseDto } from './dto/admin-response.dto.js';
 import { CreateAdminDto } from './dto/create-admin.dto.js';
 
 @ApiTags(ADMIN_SWAGGER.TAG)
+@AdminAuth()
 @Controller(ADMIN_ROUTES.BASE)
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}

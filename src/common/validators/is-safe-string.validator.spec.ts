@@ -7,6 +7,7 @@ describe('IsSafeString Validator on CreateAdminDto', () => {
     const dto = new CreateAdminDto();
     dto.email = 'admin@northemlog.com';
     dto.fullName = 'Erdem Hacıhasanoğlu';
+    dto.password = 'StrongPass123!';
 
     const errors = await validate(dto);
     expect(errors).toHaveLength(0);
@@ -25,6 +26,7 @@ describe('IsSafeString Validator on CreateAdminDto', () => {
       const dto = new CreateAdminDto();
       dto.email = 'admin@northemlog.com';
       dto.fullName = payload;
+      dto.password = 'StrongPass123!';
 
       const errors = await validate(dto);
       expect(errors.length).toBeGreaterThan(0);

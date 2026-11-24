@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard.js';
 import { AdminController } from './admin.controller.js';
 import { AdminService } from './admin.service.js';
 import { AdminResponseDto } from './dto/admin-response.dto.js';
@@ -35,7 +36,10 @@ describe('AdminController', () => {
           useValue: service,
         },
       ],
-    }).compile();
+    })
+      .overrideGuard(JwtAuthGuard)
+      .useValue({ canActivate: vi.fn().mockReturnValue(true) })
+      .compile();
 
     controller = module.get<AdminController>(AdminController);
   });
@@ -44,6 +48,7 @@ describe('AdminController', () => {
     const dto = {
       email: mockAdminResponse.email,
       fullName: mockAdminResponse.fullName,
+      password: 'StrongPass123!',
     };
 
     const result = await controller.create(dto);
