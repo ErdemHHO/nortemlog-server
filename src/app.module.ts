@@ -5,6 +5,7 @@ import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
 import { createTypeOrmOptions } from './config/database.config.js';
 import { EnvConfig, validateEnv } from './config/env.validation.js';
+import { AdminModule } from './modules/admin/admin.module.js';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { EnvConfig, validateEnv } from './config/env.validation.js';
       useFactory: (configService: ConfigService<EnvConfig, true>) =>
         createTypeOrmOptions(configService),
     }),
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [AppService],
